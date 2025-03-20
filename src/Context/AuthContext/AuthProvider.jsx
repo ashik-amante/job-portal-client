@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
 import auth from '../../Firebase/firebase.init';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { tr } from 'motion/react-client';
 
 const AuthProvider = ({children}) => {
+    const googleProvider = new GoogleAuthProvider()
 
     const [user,setUser] = useState(null)
     const [loading,setLoading] = useState(true)
@@ -16,6 +18,11 @@ const AuthProvider = ({children}) => {
     const logIn = (email,password)=>{
         setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
+    }
+    // sign in with google
+    const signInWithGoogle = ()=>{
+        setLoading(true)
+        return signInWithPopup(auth ,googleProvider)
     }
     // logout
     const logOut = ()=>{
@@ -39,7 +46,8 @@ const AuthProvider = ({children}) => {
         user,
         loading,
         logIn,
-        logOut
+        logOut,
+        signInWithGoogle
 
     }
     return (
