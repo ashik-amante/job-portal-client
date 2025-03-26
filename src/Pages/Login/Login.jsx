@@ -3,9 +3,15 @@ import React, { useContext } from 'react';
 import LoginLottie from '../../assets/lottie/login.json'
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import SocialLogin from '../Shared/SocialLogin';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const {logIn} = useContext(AuthContext)
+    const loaction = useLocation()
+    const navigate = useNavigate()
+    console.log('login location',location);
+    const from = location.state || '/';
+
 
     const handleLogin = event =>{
         event.preventDefault()
@@ -19,6 +25,7 @@ const Login = () => {
         logIn(email,password)
         .then(reuslt=> {
             console.log ('login user', reuslt.user);
+            navigate(from)
         })
         .catch(error=> {
             console.log(error.message);

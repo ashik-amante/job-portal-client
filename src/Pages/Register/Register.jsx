@@ -3,9 +3,11 @@ import RegisterLottie from '../../assets/lottie/register.json'
 import Lottie from 'lottie-react';
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import SocialLogin from '../Shared/SocialLogin';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const {createUser} = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleRregister = event =>{
         event.preventDefault()
         const form = event.target;
@@ -18,6 +20,8 @@ const Register = () => {
         createUser(email,password)
         .then(reuslt=> {
             console.log(reuslt.user);
+            navigate('/')
+
         })
         .catch(error=> {
             console.log(error.message);
