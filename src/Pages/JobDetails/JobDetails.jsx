@@ -1,15 +1,18 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const JobDetails = () => {
     const job = useLoaderData()
-    const {title,company,deadline} = job
+    const { title, company, deadline, _id } = job
     return (
         <div>
             <p>JOb detail of {title} </p>
             <p>Apply for : {company}</p>
             <p>Dead Line : {deadline}</p>
-            <button className='btn'> Apply Now </button>
+
+            <Link to={`/appliedJob/${_id}`}>
+                <button className='btn'> Apply Now </button>
+            </Link>
         </div>
     );
 };

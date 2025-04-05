@@ -8,10 +8,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
     const {logIn} = useContext(AuthContext)
     const loaction = useLocation()
+    console.log('location in login page', location);
     const navigate = useNavigate()
-    console.log('login location',location);
-    const from = location.state || '/';
-
+   
 
     const handleLogin = event =>{
         event.preventDefault()
@@ -19,13 +18,13 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         const user = {email,password}
-        console.log(user);
+        // console.log(user);
         // password validation
 
         logIn(email,password)
         .then(reuslt=> {
             console.log ('login user', reuslt.user);
-            navigate(from)
+            navigate(location?.state ? location.state : '/')
         })
         .catch(error=> {
             console.log(error.message);
