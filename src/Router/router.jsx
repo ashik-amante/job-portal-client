@@ -35,7 +35,7 @@ import AppliedJob from "../Pages/JobApplied/AppliedJob";
         },
         {
           path: '/login',
-          element: <Login></Login>
+          element: <Login></Login>  
         }
       ]
     },
