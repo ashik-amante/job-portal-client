@@ -1,9 +1,11 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Addjob = () => {
     const { user } = useAuth()
+    const navigate = useNavigate()
 
     const handleJob = e => {
         e.preventDefault()
@@ -35,7 +37,7 @@ const Addjob = () => {
                         icon: "success",
                         draggable: true
                     });
-                    // navigate('/myApplications')
+                    navigate('/myPostedJobs')
                 }
             })
     }
@@ -144,6 +146,14 @@ const Addjob = () => {
                     <textarea className="textarea textarea-bordered" name='responsibilities' required placeholder="Write each responsibility in new line "></textarea>
                 </div>
 
+                {/* Application Deadline*/}
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text"> Application Deadline</span>
+                    </label>
+                    <input type="date" name='applicationDeadline' placeholder=" Application Deadline " className="input input-bordered" required />
+                </div>
+
                 {/* hr email */}
                 <div className="form-control">
                     <label className="label">
@@ -163,7 +173,7 @@ const Addjob = () => {
                     <label className="label">
                         <span className="label-text">Company logo</span>
                     </label>
-                    <input type="url" name='logo' placeholder="Logo url" className="input input-bordered" required />
+                    <input type="url" name='company_logo' placeholder="Logo url" className="input input-bordered" required />
                 </div>
 
                 {/* submit area */}
